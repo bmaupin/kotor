@@ -1,0 +1,40 @@
+# xoreos - A reimplementation of BioWare's Aurora engine
+#
+# xoreos is the legal property of its developers, whose names
+# can be found in the AUTHORS file distributed with this source
+# distribution.
+#
+# xoreos is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 3
+# of the License, or (at your option) any later version.
+#
+# xoreos is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with xoreos. If not, see <http://www.gnu.org/licenses/>.
+
+# Common build properties included by all our Makefile.am files.
+
+AUTOMAKE_OPTIONS = subdir-objects
+
+EMPTY =
+
+LIBSF_C_CXX = $(XOREOSTOOLS_CFLAGS) $(ZLIB_CFLAGS) $(XML2_CFLAGS)
+LIBSF_CXX   =
+
+LIBSL       = $(XOREOSTOOLS_LIBS) $(LTLIBICONV) $(ZLIB_LIBS) $(XML2_LIBS)
+
+FLAGS_C_CXX = -I$(top_srcdir) -ggdb $(LTO) $(WARN_C_CXX) $(WERROR)
+FLAGS_C     = $(STD_C)
+FLAGS_CXX   = $(WARN_CXX) $(STD_CXX)
+
+AM_CFLAGS   = $(FLAGS_C_CXX) $(FLAGS_C)   $(LIBSF_C_CXX) $(LIBSF_C)
+AM_CXXFLAGS = $(FLAGS_C_CXX) $(FLAGS_CXX) $(LIBSF_C_CXX) $(LIBSF_CXX)
+AM_LDFLAGS  = $(LTO)
+LDADD       = $(LIBSL)
+
+LIBS =
